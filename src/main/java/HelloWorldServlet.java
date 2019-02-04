@@ -13,9 +13,18 @@ public class HelloWorldServlet extends HttpServlet {
         counter+=1;
         String queryString = request.getParameter("name");
         if(queryString != null) {
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-            out.println("<h1>Hello, " + queryString + "!</h1>");
+            if(queryString.equals("clearCount")) {
+                counter = 0;
+                response.setContentType("text/html");
+                PrintWriter out = response.getWriter();
+                out.println("<h1>Hello, World!"+ "</h1>");
+                out.println("<p>Page View Count Cleared<p>");
+            } else {
+                response.setContentType("text/html");
+                PrintWriter out = response.getWriter();
+                out.println("<h1>Hello, " + queryString + "!</h1>");
+            }
+
         } else {
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
