@@ -20,7 +20,9 @@ import java.io.IOException;
       if (username.equals("admin") && password.equals("password")) {
         response.sendRedirect("/profile");
       } else {
+
         response.sendRedirect("/login");
+
       }
 
     }
