@@ -9,6 +9,7 @@ public class ListAdsDao implements Ads {
             ads = generateAds();
         }
         return ads;
+
     }
 
     private List<Ad> generateAds() {
