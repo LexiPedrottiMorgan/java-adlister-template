@@ -12,8 +12,8 @@
     <h1>Here are all of the Ads:</h1>
     <c:forEach var="ads" items="${ads}">
         <div class="col-md-6">
-            <h2>${ads.getTitle()}</h2>
-            <p>Description: ${ads.getDescription()}</p>
+            <h2>${ads.title}</h2>
+            <p>Description: ${ads.description}</p>
         </div>
     </c:forEach>
 </div>
