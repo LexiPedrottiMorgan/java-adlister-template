@@ -9,22 +9,25 @@ import java.nio.file.spi.FileSystemProvider;
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            if(request.getSession().getAttribute("user") !=null && (Boolean)request.getSession().getAttribute("user") ==true) {
+            if(request.getSession().getAttribute("user") !=null) {
                 response.sendRedirect("/profile");
                 return;
             }
             request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         boolean validAttempt = username.equals("admin") && password.equals("password");
             if (validAttempt) {
                 request.getSession().setAttribute("user", true);
+                request.getSession().setAttribute("username", username);
+                request.setAttribute("username", username);
                 response.sendRedirect("/profile");
             } else {
                 response.sendRedirect("/login");
             }
+
     }
 }

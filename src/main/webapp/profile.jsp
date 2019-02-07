@@ -7,7 +7,10 @@
 </head>
 <body>
     <jsp:include page="partials/navbar.jsp" />
+    <div class="alert alert-success" role="alert">
 
+       Welcome, ${username}!
+    </div>
     <div class="container">
         <h1>Viewing your profile.</h1>
     </div>
