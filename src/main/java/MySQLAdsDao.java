@@ -7,11 +7,11 @@ import com.mysql.cj.jdbc.Driver;
 public class MySQLAdsDao implements Ads {
     private Connection connection = null;
 
-    public void AdsDao(Config config){
+    public MySQLAdsDao(Config config){
         try {
             DriverManager.registerDriver(new Driver());
-            config = new Config();
-            Connection connection = DriverManager.getConnection(
+//            config = new Config();
+            connection = DriverManager.getConnection(
                     config.getUrl(),
                     config.getUsername(),
                     config.getPassword()
@@ -24,7 +24,7 @@ public class MySQLAdsDao implements Ads {
     @Override
     public List<Ad> all() {
         List<Ad> ads = new ArrayList<>();
-        String query = "SELECT * FROM quotes";
+        String query = "SELECT * FROM ads";
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -56,8 +56,9 @@ public class MySQLAdsDao implements Ads {
     }
 
     public Long insert(Ad ads) {
-        String query = "INSERT INTO movies(title, rating) VALUES ('casablanca', 4)";
+        String query = "INSERT INTO ads(user_id,title, description) VALUES (1,'sample title', 'sample description')";
         try {
+            System.out.println(connection.createStatement());
             Statement stmt = connection.createStatement();
             stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
