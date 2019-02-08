@@ -13,7 +13,7 @@ public class ViewProfileServlet extends HttpServlet {
             return;
 
         }
-        request.getRequestDispatcher("/profile.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
 
     }
 
