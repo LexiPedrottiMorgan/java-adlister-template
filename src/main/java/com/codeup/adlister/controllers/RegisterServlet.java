@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -21,7 +22,7 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // TODO: ensure the submitted information is valid
-        if (request.getSession().getAttribute("user") == null || request.getSession().getAttribute("password") == null) {
+        if (request.getParameter("username").equals("") || request.getParameter("password").equals("") || request.getParameter("email").equals("")) {
             response.sendRedirect("/register");
             return;
         }
@@ -35,7 +36,6 @@ public class RegisterServlet extends HttpServlet {
                           email,
                           password
                   );
-
           DaoFactory.getUsersDao().insert(user);
           request.getSession().setAttribute("user", user);
         // TODO: if a user was successfully created, send them to their profile
