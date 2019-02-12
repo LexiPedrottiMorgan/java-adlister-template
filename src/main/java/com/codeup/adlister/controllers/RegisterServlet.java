@@ -26,11 +26,15 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
         // TODO: create a new user based off of the submitted information
-          User user = new User(
-                  request.getParameter("username"),
-                  request.getParameter("password"),
-                  request.getParameter("email")
-          );
+                 String username = request.getParameter("username");
+                 String email = request.getParameter("email");
+                 String password = request.getParameter("password");
+
+                  User user = new User(
+                          username,
+                          email,
+                          password
+                  );
 
           DaoFactory.getUsersDao().insert(user);
           request.getSession().setAttribute("user", user);
